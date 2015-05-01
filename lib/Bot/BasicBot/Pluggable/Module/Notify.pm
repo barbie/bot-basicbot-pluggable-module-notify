@@ -123,11 +123,11 @@ sub _send_email {
 
         if($channel{$user}) {
             my $seen = $self->store->get( 'Seen', "seen_$user");
-            if($seen && $seen->{time}) {
+            if($seen && $seen->{'time'}) {
                 #print "seen=".Dumper($seen)."\n";
-                my $time = time - $seen->{time};
-                next if($seen < $settings{active} * 60);
-                next if($seen > 3600 && $type == 2);
+                my $time = time - $seen->{'time'};
+                next if($time < $settings{active} * 60);
+                next if($time > 3600 && $type == 2);
             }
         }
 
