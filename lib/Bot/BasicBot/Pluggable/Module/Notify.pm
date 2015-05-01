@@ -83,7 +83,7 @@ sub told {
             return 1; # we only send 1 email per user
         } elsif($word eq '@here') {
             my @users = []; # filter based on seen in the last hour
-            $self->_send_email(2,$mess,@users);
+            $self->_send_email(2,$mess,keys %users);
             return 1; # we only send 1 email per user
         } elsif($nick && $emails{$nick}) {
             $self->_send_email(1,$mess,$word);

@@ -2,6 +2,7 @@ Revision history for Bot-BasicBot-Pluggable-Module-Notify
 =========================================================
 
         - fixed time calculations.
+        - fixed @here user list.
 
 0.01    2015-04-29
         - original release;
