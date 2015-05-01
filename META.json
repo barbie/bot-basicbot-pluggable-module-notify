@@ -1,6 +1,6 @@
 {
     "name" : "Bot-BasicBot-Pluggable-Module-Notify",
-    "version": "0.01",
+    "version": "0.02",
     "abstract": "Notify users via email, when they are away from IRC",
     "author": [
       "Barbie <barbie@cpan.org>"
@@ -46,7 +46,7 @@
     "provides": {
         "Bot::BasicBot::Pluggable::Module::Notify": {
             "file": "lib/Bot/BasicBot/Pluggable/Module/Notify.pm",
-            "version": "0.01"
+            "version": "0.02"
         }
     },
     "no_index": {
