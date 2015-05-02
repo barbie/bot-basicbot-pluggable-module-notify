@@ -15,12 +15,12 @@ WriteMakefile(
     PREREQ_PM           => {
 
         # prereqs
-        'Bot::BasicBot::Pluggable'          => '0',
-        'Bot::BasicBot::Pluggable::Seen'    => '0',
-        'IO::File'                          => '0',
+        'Bot::BasicBot::Pluggable'                  => '0',
+        'Bot::BasicBot::Pluggable::Module::Seen'    => '0',
+        'IO::File'                                  => '0',
 
         # build/test prereqs
-        'Test::More'                        => '0.70'
+        'Test::More'                                => '0.70'
 
     }
 );

@@ -25,7 +25,7 @@
             "requires" : {
                 "perl": "5.006",
                 "Bot::BasicBot::Pluggable" : "0",
-                "Bot::BasicBot::Pluggable::Seen" : "0",
+                "Bot::BasicBot::Pluggable::Module::Seen" : "0",
                 "IO::File" : "0"
             }
         },

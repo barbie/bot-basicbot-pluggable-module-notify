@@ -10,17 +10,17 @@ author:
     - Barbie <barbie@cpan.org>
 
 requires:
-  perl:                           5.006
-  Bot::BasicBot::Pluggable:       0
-  Bot::BasicBot::Pluggable::Seen: 0
-  IO::File:                       0
+  perl:                                     5.006
+  Bot::BasicBot::Pluggable:                 0
+  Bot::BasicBot::Pluggable::Module::Seen:   0
+  IO::File:                                 0
 recommends:
-  Test::CPAN::Meta:               0
-  Test::CPAN::Meta::JSON:         0
-  Test::Pod:                      1.00
-  Test::Pod::Coverage:            0.08
+  Test::CPAN::Meta:                         0
+  Test::CPAN::Meta::JSON:                   0
+  Test::Pod:                                1.00
+  Test::Pod::Coverage:                      0.08
 build_requires:
-  Test::More:                     0.70
+  Test::More:                               0.70
 
 provides:
   Bot::BasicBot::Pluggable::Module::Notify:
