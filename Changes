@@ -1,6 +1,8 @@
 Revision history for Bot-BasicBot-Pluggable-Module-Notify
 =========================================================
 
+        - fixed missing prerequisite (MIME::Lite).
+
 0.03    2015-05-02
         - fixed prerequisite name.
 

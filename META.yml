@@ -14,6 +14,7 @@ requires:
   Bot::BasicBot::Pluggable:                 0
   Bot::BasicBot::Pluggable::Module::Seen:   0
   IO::File:                                 0
+  MIME::Lite:                               0
 recommends:
   Test::CPAN::Meta:                         0
   Test::CPAN::Meta::JSON:                   0

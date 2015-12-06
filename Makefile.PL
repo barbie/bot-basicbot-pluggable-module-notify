@@ -18,6 +18,7 @@ WriteMakefile(
         'Bot::BasicBot::Pluggable'                  => '0',
         'Bot::BasicBot::Pluggable::Module::Seen'    => '0',
         'IO::File'                                  => '0',
+        'MIME::Lite'                                => '0',
 
         # build/test prereqs
         'Test::More'                                => '0.70'
