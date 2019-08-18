@@ -15,6 +15,7 @@ use base qw(Bot::BasicBot::Pluggable::Module);
 
 use Data::Dumper;
 use IO::File;
+use List::MoreUtils qw( any );
 use MIME::Lite;
 
 #############################################################################
@@ -91,7 +92,7 @@ sub told {
         }
     }
     
-    return 1 if(grep { $_ == 1 } values %users);
+    return 1 if(any { $_ == 1 } values %users);
     return 0;
 }
 
