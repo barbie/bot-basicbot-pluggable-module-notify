@@ -63,7 +63,7 @@ sub told {
 
     my (@words) = split(/[^@\w]+/,$body);
     my $data = $self->bot->channel_data( $mess->{channel} );
-    my %users = map { $_ => 1 } keys %$data; # get users in channel
+    my %users = map { $_ => 0 } keys %$data; # get users in channel
 
     # get identities
     my $pocoirc = $self->bot->pocoirc( $mess->{channel} );
@@ -76,13 +76,15 @@ sub told {
 
     my $prev = '';
     for my $word (@words) {
-        $prev = 'seen' if($word eq 'seen);
+        $prev = 'seen' if($word eq 'seen');
         next    if($prev eq 'seen' || $word =~ /(\-\-|\+\+)$/); # ignore seen and karma messages
         my $nick = '';
         if($word =~ /@(\w+)/) {
             my $user = $1;
             $nick = $self->_match_user($user, $self->{nicks});
         }
+
+        next if($nick && $users{$nick}); # don't send repeated mails
 
         if($word eq '@all') {
             $self->_send_email(1,$mess,@recipients);
@@ -93,7 +95,8 @@ sub told {
             return 1; # we only send 1 email per user
         } elsif($nick && $emails{$nick}) {
             $self->_send_email(1,$mess,$nick);
-            $users{$nick} = 0; # we only send 1 email per user
+            $users{$nick} = 1; # we only send 1 email per user
+            @recipients = grep { $_ ne $nick } @recipients; # don't send repeated mails
         }
     }
     
@@ -284,6 +287,8 @@ next updated entry actioned.
 
 Please also note that we try to avoid 'seen' and 'karma' requests, but the odd
 one may slip through.
+
+returns 1 if any mails were sent, 0 otherwise.
 
 =back
  
