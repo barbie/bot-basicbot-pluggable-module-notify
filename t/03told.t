@@ -7,8 +7,8 @@ use Test::Most tests => 21;
 use Bot::BasicBot::Pluggable;
 use Bot::BasicBot::Pluggable::Module;
 use Bot::BasicBot::Pluggable::Module::Notify;
+use POE::Component::IRC::State;
 use Test::MockModule;
-use Data::Printer;
 
 my (@to,$to,$subject,$body);
 
