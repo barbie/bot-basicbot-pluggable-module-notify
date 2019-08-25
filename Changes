@@ -5,6 +5,7 @@ Revision history for Bot-BasicBot-Pluggable-Module-Notify
         - fixed return logic of told().
         - ensure we don't send multiple mails to any user.
         - added missing prerequisites.
+        - extended the test suite.
 
 0.04    2015-12-06
         - fixed missing prerequisite (MIME::Lite).

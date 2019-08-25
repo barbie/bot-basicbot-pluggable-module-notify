@@ -25,6 +25,7 @@ recommends:
   Test::Pod::Coverage:                      0.08
 build_requires:
   Test::More:                               0.70
+  Test::Most:                               0
 
 provides:
   Bot::BasicBot::Pluggable::Module::Notify:

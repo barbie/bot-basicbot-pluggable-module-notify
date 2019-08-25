@@ -24,7 +24,8 @@ WriteMakefile(
         'MIME::Lite'                                => '0',
 
         # build/test prereqs
-        'Test::More'                                => '0.70'
+        'Test::More'                                => '0.70',
+        'Test::Most'                                => '0'
 
     }
 );
