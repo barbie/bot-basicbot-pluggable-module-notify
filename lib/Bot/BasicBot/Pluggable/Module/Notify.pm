@@ -13,6 +13,7 @@ our $VERSION = '0.04';
 
 use base qw(Bot::BasicBot::Pluggable::Module);
 
+use DateTime;
 use IO::File;
 use List::MoreUtils qw( any );
 use MIME::Lite;

@@ -21,8 +21,12 @@ DEPENDENCIES
 This module requires these other modules and libraries:
 
     Bot::BasicBot::Pluggable
-    Bot::BasicBot::Pluggable::Seen
+    Bot::BasicBot::Pluggable::Module
+    Bot::BasicBot::Pluggable::Module::Seen
+    DateTime
     IO::File
+    List::MoreUtils
+    MIME::Lite
 
 
 AUTHOR
