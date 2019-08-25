@@ -13,7 +13,6 @@ our $VERSION = '0.04';
 
 use base qw(Bot::BasicBot::Pluggable::Module);
 
-use Data::Dumper;
 use IO::File;
 use List::MoreUtils qw( any );
 use MIME::Lite;
@@ -48,7 +47,6 @@ sub init {
     }
 
     $self->store->set( 'notify', 'notifications', $file );
-    #print "notifications file = $file\n";
 }
  
 sub help {
@@ -72,7 +70,6 @@ sub told {
     my @nicks = $pocoirc->nicks();
     my %nicks = map { $_ => $pocoirc->nick_info($_) } @nicks;
     $self->{nicks} = \%nicks;
-    #print "nicks=".Dumper(\%nicks)."\n";
 
     my $prev = '';
     for my $word (@words) {
@@ -125,7 +122,6 @@ sub _send_email {
         if($channel{$user}) {
             my $seen = $self->store->get( 'Seen', "seen_$user");
             if($seen && $seen->{'time'}) {
-                #print "seen=".Dumper($seen)."\n";
                 my $time = time - $seen->{'time'};
                 next if($time < $settings{active} * 60);
                 next if($time > 3600 && $type == 2);
@@ -155,7 +151,6 @@ sub _load_notification_file {
         s/\s+$//;
         next if(/^#/ || /^$/);
         my ($nick,$ident,$email) = split(/,/,$_,3);
-        #print "nick=$nick, ident=$ident, email=$email\n";
         
         if($nick eq 'CONFIG') {
             $settings{$ident} = $email;
@@ -172,9 +167,6 @@ sub _load_notification_file {
     for my $key (keys %defaults) {
         $settings{$key} ||= $defaults{$key};
     }
-
-    #print "settings: $_=$settings{$_}\n"  for(keys %settings);
-    #print "emails: $_=$emails{$_}\n"  for(keys %emails);
 
     return 0    unless($settings{smtp});
     return 1    if(keys %emails);
