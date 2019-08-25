@@ -61,7 +61,7 @@ sub told {
     return 0    unless defined $body;
     return 0    unless($self->_load_notification_file());
 
-    my (@words) = split(/\s+/,$body);
+    my (@words) = split(/[^@\w]+/,$body);
     my $data = $self->bot->channel_data( $mess->{channel} );
     my %users = map { $_ => 1 } keys %$data; # get users in channel
 
@@ -71,20 +71,27 @@ sub told {
     my %nicks = map { $_ => $pocoirc->nick_info($_) } @nicks;
     $self->{nicks} = \%nicks;
 
+    my $sender = $self->_match_user($mess->{who}, $self->{nicks}) || '';
+    my @recipients = grep { $_ ne $sender } keys %users;
+
     my $prev = '';
     for my $word (@words) {
         next    if($prev eq 'seen' || $word =~ /(\-\-|\+\+)$/); # ignore seen and karma messages
-        my $nick = $self->_match_user($word, $self->{nicks}) || '';
+        my $nick = '';
+        if($word =~ /@(\w+)/) {
+            my $user = $1;
+            $nick = $self->_match_user($user, $self->{nicks});
+        }
 
         if($word eq '@all') {
-            $self->_send_email(1,$mess,keys %users);
+            $self->_send_email(1,$mess,@recipients);
             return 1; # we only send 1 email per user
         } elsif($word eq '@here') {
             my @users = []; # filter based on seen in the last hour
-            $self->_send_email(2,$mess,keys %users);
+            $self->_send_email(2,$mess,@recipients);
             return 1; # we only send 1 email per user
         } elsif($nick && $emails{$nick}) {
-            $self->_send_email(1,$mess,$word);
+            $self->_send_email(1,$mess,$nick);
             $users{$nick} = 0; # we only send 1 email per user
         }
     }
@@ -267,8 +274,8 @@ notified.
 =item told()
  
 Loads the email notification file, if not previously done so, and checks 
-whether a channel user, @here or @all has been used. Sends the email to all a
-ppropriately listed email recipients.
+whether a channel user, @here or @all has been used. Sends the email to all
+appropriately listed email recipients.
 
 Note that a change to the notification file, will force a reload of the file on
 the next invocation. As such, note that there may be a delay before you see the
