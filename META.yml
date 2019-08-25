@@ -16,7 +16,7 @@ requires:
   Bot::BasicBot::Pluggable::Module::Seen:   0
   DateTime:                                 0
   IO::File:                                 0
-  List::MoreUtils                           0
+  List::MoreUtils:                          0
   MIME::Lite:                               0
 recommends:
   Test::CPAN::Meta:                         0
