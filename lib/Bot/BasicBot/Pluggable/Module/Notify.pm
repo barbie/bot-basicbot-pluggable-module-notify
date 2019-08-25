@@ -76,6 +76,7 @@ sub told {
 
     my $prev = '';
     for my $word (@words) {
+        $prev = 'seen' if($word eq 'seen);
         next    if($prev eq 'seen' || $word =~ /(\-\-|\+\+)$/); # ignore seen and karma messages
         my $nick = '';
         if($word =~ /@(\w+)/) {
