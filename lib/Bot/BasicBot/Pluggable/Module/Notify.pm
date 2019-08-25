@@ -61,8 +61,9 @@ sub told {
 
     return 0    unless defined $body;
     return 0    unless($self->_load_notification_file());
+    return 0    if($body =~ m!^\s*/?who(is|was)?\s+!); # ignore who requests
 
-    my (@words) = split(/[^@\w]+/,$body);
+    my (@words) = split(/[^@\w\+\-]+/,$body);
     my $data = $self->bot->channel_data( $mess->{channel} );
     my %users = map { $_ => 0 } keys %$data; # get users in channel
 
@@ -77,12 +78,14 @@ sub told {
 
     my $prev = '';
     for my $word (@words) {
-        $prev = 'seen' if($word eq 'seen');
-        next    if($prev eq 'seen' || $word =~ /(\-\-|\+\+)$/); # ignore seen and karma messages
+        next    if($word =~ /(\-\-|\+\+)$/); # ignore karma messages
+        next    if($prev eq 'seen');         # ignore seen messages
+        $prev = $word;
+
         my $nick = '';
-        if($word =~ /@(\w+)/) {
+        if($word =~ /@?(\w+)/) {
             my $user = $1;
-            $nick = $self->_match_user($user, $self->{nicks});
+            $nick = $self->_match_user($user, $self->{nicks}) || '';
         }
 
         next if($nick && $users{$nick}); # don't send repeated mails
