@@ -24,6 +24,7 @@ WriteMakefile(
         'MIME::Lite'                                => '0',
 
         # build/test prereqs
+        'Test::MockModue'                           => '0',
         'Test::More'                                => '0.70',
         'Test::Most'                                => '0'
 

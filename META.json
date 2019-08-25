@@ -35,6 +35,7 @@
         },
         "test" : {
             "requires": {
+                "Test::MockModule": "0",
                 "Test::More": "0.70",
                 "Test::Most": "0"
             },
